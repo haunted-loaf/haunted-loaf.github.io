@@ -1,0 +1,441 @@
+@charset "UTF-8";
+/***
+    The new CSS reset - version 1.8.4 (last updated 14.2.2023)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+@import "https://cdn.jsdelivr.net/npm/charter-webfont@4/charter.min.css";
+*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a, button {
+  cursor: revert;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol, ul, menu {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-inline-size: 100%;
+  max-block-size: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input, textarea {
+  -webkit-user-select: auto;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+  -webkit-appearance: revert;
+  appearance: revert;
+}
+
+/* preformatted text - use only for this feature */
+:where(pre) {
+  all: revert;
+}
+
+/* reset default text opacity of input placeholder */
+::placeholder {
+  color: unset;
+}
+
+/* remove default dot (•) sign */
+::marker {
+  content: initial;
+}
+
+/* fix the feature of 'hidden' attribute.
+ display:revert; revert to element instead of attribute */
+:where([hidden]) {
+  display: none;
+}
+
+/* revert for bug in Chromium browsers
+ - fix for the content editable attribute will work properly.
+ - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable=false])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  -webkit-user-select: auto;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable=true]) {
+  -webkit-user-drag: element;
+}
+
+/* Revert Modal native behavior */
+:where(dialog:modal) {
+  all: revert;
+}
+
+/* source-serif-pro-latin-400-normal */
+@font-face {
+  font-family: "Source Serif Pro";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/source-serif-pro@latest/latin-400-normal.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/source-serif-pro@latest/latin-400-normal.woff) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* source-serif-pro-latin-700-normal */
+@font-face {
+  font-family: "Source Serif Pro";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/source-serif-pro@latest/latin-700-normal.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/source-serif-pro@latest/latin-700-normal.woff) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* source-serif-pro-latin-400-italic */
+@font-face {
+  font-family: "Source Serif Pro";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 400;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/source-serif-pro@latest/latin-400-italic.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/source-serif-pro@latest/latin-400-italic.woff) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* source-serif-pro-latin-700-italic */
+@font-face {
+  font-family: "Source Serif Pro";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 700;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/source-serif-pro@latest/latin-700-italic.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/source-serif-pro@latest/latin-700-italic.woff) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* atkinson-hyperlegible-latin-400-normal */
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/atkinson-hyperlegible@latest/latin-400-normal.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/atkinson-hyperlegible@latest/latin-400-normal.woff) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* atkinson-hyperlegible-latin-400-normal */
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/atkinson-hyperlegible@latest/latin-700-normal.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/atkinson-hyperlegible@latest/latin-700-normal.woff) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* charis-sil-latin-400-normal */
+@font-face {
+  font-family: "Charis SIL";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/charis-sil@latest/latin-400-normal.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/charis-sil@latest/latin-400-normal.woff) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* charis-sil-latin-700-normal */
+@font-face {
+  font-family: "Charis SIL";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/charis-sil@latest/latin-700-normal.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/charis-sil@latest/latin-700-normal.woff) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* charis-sil-latin-400-italic */
+@font-face {
+  font-family: "Charis SIL";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 400;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/charis-sil@latest/latin-400-italic.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/charis-sil@latest/latin-400-italic.woff) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* charis-sil-latin-700-italic */
+@font-face {
+  font-family: "Charis SIL";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 700;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/charis-sil@latest/latin-700-italic.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/charis-sil@latest/latin-700-italic.woff) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* source-sans-pro-latin-400-normal */
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/source-sans-pro@latest/latin-400-normal.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/source-sans-pro@latest/latin-400-normal.woff) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* source-sans-pro-latin-700-normal */
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/source-sans-pro@latest/latin-700-normal.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/source-sans-pro@latest/latin-700-normal.woff) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* source-sans-pro-latin-400-italic */
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 400;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/source-sans-pro@latest/latin-400-italic.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/source-sans-pro@latest/latin-400-italic.woff) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* source-sans-pro-latin-700-italic */
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 700;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/source-sans-pro@latest/latin-700-italic.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/source-sans-pro@latest/latin-700-italic.woff) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cooper-hewitt-latin-200-normal */
+@font-face {
+  font-family: "Cooper Hewitt";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/cooper-hewitt@latest/latin-200-normal.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/cooper-hewitt@latest/latin-200-normal.woff) format("woff");
+}
+/* cooper-hewitt-latin-400-normal */
+@font-face {
+  font-family: "Cooper Hewitt";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/cooper-hewitt@latest/latin-400-normal.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/cooper-hewitt@latest/latin-400-normal.woff) format("woff");
+}
+/* cooper-hewitt-latin-700-normal */
+@font-face {
+  font-family: "Cooper Hewitt";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/cooper-hewitt@latest/latin-700-normal.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/cooper-hewitt@latest/latin-700-normal.woff) format("woff");
+}
+/* cooper-hewitt-latin-200-italic */
+@font-face {
+  font-family: "Cooper Hewitt";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 200;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/cooper-hewitt@latest/latin-200-italic.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/cooper-hewitt@latest/latin-200-italic.woff) format("woff");
+}
+/* cooper-hewitt-latin-400-italic */
+@font-face {
+  font-family: "Cooper Hewitt";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 400;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/cooper-hewitt@latest/latin-400-italic.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/cooper-hewitt@latest/latin-400-italic.woff) format("woff");
+}
+/* cooper-hewitt-latin-700-italic */
+@font-face {
+  font-family: "Cooper Hewitt";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 700;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/cooper-hewitt@latest/latin-700-italic.woff2) format("woff2"), url(https://cdn.jsdelivr.net/fontsource/fonts/cooper-hewitt@latest/latin-700-italic.woff) format("woff");
+}
+body {
+  font-family: "Atkinson Hyperlegible";
+  font-size: 15px;
+  line-height: 1.6180339887;
+  margin: 1em auto;
+  overflow-y: scroll;
+  background: #eee;
+  color: #111;
+  max-width: 1000px;
+  position: relative;
+}
+
+header {
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+header menu {
+  display: flex;
+}
+header menu li:not(:first-child)::before {
+  content: "/";
+}
+
+main {
+  font-size: 1.2rem;
+}
+
+nav menu > li::before {
+  content: "* ";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 2rem;
+  font-size: 1.4rem;
+}
+
+body {
+  display: flex;
+  gap: 1rem;
+}
+
+nav {
+  flex: 0 0 15rem;
+}
+nav ol ol {
+  padding-left: 1rem;
+}
+
+main {
+  flex: 1 1 0;
+}
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6,
+main table,
+main ul,
+main ol,
+main p {
+  margin-bottom: 1rem;
+}
+
+h1 {
+  margin-top: 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+}
+
+h2 {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-weight: bold;
+}
+
+h4 {
+  font-style: italic;
+}
+
+ul {
+  list-style: "* " inside;
+}
+ul li > p {
+  display: inline;
+}
+ul li {
+  margin-bottom: 1em;
+}
+ul ul {
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
+:any-link {
+  color: #119;
+}
+:any-link:hover {
+  text-decoration: underline;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  border-top: 2px solid currentColor;
+  border-bottom: 1px solid currentColor;
+}
+
+tbody {
+  border-bottom: 2px solid currentColor;
+}
+
+td,
+th {
+  background-clip: padding-box;
+}
+td[align=right],
+th[align=right] {
+  text-align: right;
+}
+
+td:not(:first-child),
+th:not(:first-child) {
+  padding-left: 1em;
+}
+
+em {
+  font-style: italic;
+}
+
+b {
+  font-weight: bold;
+}
+
+header {
+  border-bottom: 1px solid #000;
+}
+
+footer {
+  border-top: 1px solid #000;
+  margin-top: 1em;
+  padding-top: 1em;
+}
+
+blockquote {
+  padding-left: 1em;
+}
+
+p {
+  text-align: justify;
+}

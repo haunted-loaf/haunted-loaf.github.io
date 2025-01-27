@@ -1,0 +1,296 @@
+
+
+<html>
+  <head>
+    <title>GLSL snippets</title>
+    <link rel="stylesheet" href="/_styles/style.css"/>
+  </head>
+  <body>
+    <nav>
+      
+      <ol>
+        
+  <li>
+    <a href="/">
+      
+        📁
+      
+      Content
+    </a>
+    
+      <ol>
+        
+          
+        
+          
+            
+  <li>
+    <a href="/games/">
+      
+        📁
+      
+      Games
+    </a>
+    
+      <ol>
+        
+          
+            
+  <li>
+    <a href="/games/roguepunk/">
+      
+        📁
+      
+      Roguepunk
+    </a>
+    
+      <ol>
+        
+          
+            
+  <li>
+    <a href="/games/roguepunk/map.webp">
+      
+        📄
+      
+      Map
+    </a>
+    
+      <ol>
+        
+      </ol>
+    
+  </li>
+
+          
+        
+          
+            
+  <li>
+    <a href="/games/roguepunk/introduction/">
+      
+        📄
+      
+      Introduction
+    </a>
+    
+      <ol>
+        
+      </ol>
+    
+  </li>
+
+          
+        
+      </ol>
+    
+  </li>
+
+          
+        
+          
+            
+  <li>
+    <a href="/games/skypunk/">
+      
+        📁
+      
+      Skypunk
+    </a>
+    
+      <ol>
+        
+          
+            
+  <li>
+    <a href="/games/skypunk/bibliography/">
+      
+        📄
+      
+      Bibliography
+    </a>
+    
+      <ol>
+        
+      </ol>
+    
+  </li>
+
+          
+        
+          
+            
+  <li>
+    <a href="/games/skypunk/introduction/">
+      
+        📄
+      
+      Introduction
+    </a>
+    
+      <ol>
+        
+      </ol>
+    
+  </li>
+
+          
+        
+          
+            
+  <li>
+    <a href="/games/skypunk/history/">
+      
+        📄
+      
+      Alternate history
+    </a>
+    
+      <ol>
+        
+      </ol>
+    
+  </li>
+
+          
+        
+      </ol>
+    
+  </li>
+
+          
+        
+          
+            
+  <li>
+    <a href="/games/starpunk/">
+      
+        📁
+      
+      Starpunk
+    </a>
+    
+      <ol>
+        
+          
+            
+  <li>
+    <a href="/games/starpunk/introduction/">
+      
+        📄
+      
+      Introduction
+    </a>
+    
+      <ol>
+        
+      </ol>
+    
+  </li>
+
+          
+        
+      </ol>
+    
+  </li>
+
+          
+        
+      </ol>
+    
+  </li>
+
+          
+        
+          
+        
+          
+            
+  <li>
+    <a href="/code/">
+      
+        📁
+      
+      Code
+    </a>
+    
+      <ol>
+        
+          
+            
+  <li>
+    <a href="/code/snippets/">
+      
+        📁
+      
+      Snippets
+    </a>
+    
+      <ol>
+        
+          
+            
+  <li>
+    <a href="/code/snippets/glsl/">
+      
+        📄
+      
+      GLSL snippets
+    </a>
+    
+      <ol>
+        
+      </ol>
+    
+  </li>
+
+          
+        
+      </ol>
+    
+  </li>
+
+          
+        
+      </ol>
+    
+  </li>
+
+          
+        
+          
+        
+      </ol>
+    
+  </li>
+
+      </ol>
+    </nav>
+    <main>
+      <h2>Lat-long to XYZ conversion</h2>
+<pre><code class="language-glsl">vec3 ll_to_xyz(vec2 ll) {
+  float lon = ll.x;
+  float lat = ll.y;
+  return vec3(cos(lon) * cos(lat), sin(lon) * cos(lat), sin(lat)  );
+}
+</code></pre>
+<pre><code class="language-glsl">vec2 xyz_to_ll(vec3 v) {
+  float x = v.x, y = v.y, z = v.z;
+  return vec2(asin(z), atan(y, x));
+}
+</code></pre>
+<h2>Rotate spherical coordinates</h2>
+<pre><code class="language-glsl">vec2 rotll(vec2 l, float theta, float phi) {
+  float lat = l.y;
+  float lon = l.x;
+  return vec2(
+    atan(sin(lon), tan(lat) * sin(theta) + cos(lon) * cos(theta)) - phi,
+    asin(cos(theta) * sin(lat) - cos(lon) * sin(theta) * cos(lat))
+  );
+}
+</code></pre>
+
+    </main>
+    <script src="/_scripts/live.js"></script>
+  </body>
+</html>

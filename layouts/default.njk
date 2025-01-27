@@ -1,0 +1,54 @@
+{% macro link (entry, title) %}
+  <a href="{{ entry.link }}">
+    {% if title %}
+      {{ title }}
+    {% else %}
+      {{ entry.title }}
+    {% endif %}
+  </a>
+{% endmacro %}
+{% macro toc (root, collapseBooks = false) %}
+  <li>
+    <a href="{{ root.link }}">
+      {% if root.is.book %}
+        📚
+      {% elif root.children.length == 0 %}
+        📄
+      {% else %}
+        📁
+      {% endif %}
+      {{ root.title }}
+    </a>
+    {% if (not collapseBooks or not root.is.book) %}
+      <ol>
+        {% for child in root.children %}
+          {% if not child.hidden %}
+            {{ toc(child, true) }}
+          {% endif %}
+        {% endfor %}
+      </ol>
+    {% endif %}
+  </li>
+{% endmacro %}
+<html>
+  <head>
+    <title>{{ entry.title }}</title>
+    <link rel="stylesheet" href="/_styles/style.css"/>
+  </head>
+  <body>
+    <nav>
+      {% if entry.book.top != entry.book %}
+        <div style="margin-bottom: 1em">
+          {{ link(entry.book.top, "Home") }}
+        </div>
+      {% endif %}
+      <ol>
+        {{ toc(entry.book) }}
+      </ol>
+    </nav>
+    <main>
+      {{ content | safe }}
+    </main>
+    <script src="/_scripts/live.js"></script>
+  </body>
+</html>
