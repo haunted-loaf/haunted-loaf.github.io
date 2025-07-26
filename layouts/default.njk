@@ -1,0 +1,44 @@
+{% macro link (entry, title) %}
+  <a href="{{ entry.link }}">
+    {%- if title -%}
+      {{ title }}
+    {%- elif entry.basename == "" -%}
+      home
+    {%- else %}
+      {{ entry.basename }}
+    {%- endif -%}
+  </a>
+{% endmacro %}
+{% macro trail (entry) %}
+  {% if entry.up %}
+    {{ trail(entry.up) }} &gt; {{ link(entry) }}
+  {% else %}
+    {{ link(entry) }}
+  {% endif %}
+{% endmacro %}
+{% macro children (root) %}
+  <ol>
+    {% for child in root.children %}
+      {% if not child.hidden %}
+        <li>{{ link(child) }}</li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+{% endmacro %}
+<html>
+  <head>
+    <title>{{ entry.title }}</title>
+    <link rel="stylesheet" href="/_styles/style.css"/>
+  </head>
+  <body>
+    <header>
+      {{ trail(entry.up) }} &gt; {{ entry.basename }}
+    </header>
+    <main>
+      {{ content | safe }}
+    </main>
+    <nav>
+      {{ children(entry) }}
+    </nav>
+  </body>
+</html>
