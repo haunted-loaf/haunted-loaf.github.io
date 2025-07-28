@@ -1,0 +1,38 @@
+---
+title: A Site Map
+---
+
+Like from the 90's.
+
+{% macro link (entry, title) %}
+  <a href="{{ entry.link }}">
+    {%- if title -%}
+      {{ title }}
+    {%- elif entry.basename == "" -%}
+      Home
+    {%- else %}
+      {{ entry.title }}
+    {%- endif -%}
+  </a>
+{% endmacro %}
+
+{% macro level (root) %}
+  <ul>
+    {% for child in root.sorted_children %}
+      {% if not child.hidden %}
+        <li>
+          {{ link(child) }}
+          {{ level(child) }}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% macro toc (root) %}
+  <div class="toc">
+    {{ level(root) }}
+  </div>
+{% endmacro %}
+
+{{ toc(root) }}
