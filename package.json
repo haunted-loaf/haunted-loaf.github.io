@@ -1,0 +1,34 @@
+{
+  "name": "static-site-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "bun run src/build.ts",
+    "dev": "bun run --hot --no-clear-screen src/run.ts"
+  },
+  "dependencies": {
+    "@parcel/watcher": "^2.5.1",
+    "@prettier/sync": "^0.5.2",
+    "@types/bun": "^1.2.4",
+    "@types/html-minifier-terser": "^7.0.2",
+    "@types/mime-types": "^2.1.4",
+    "@types/node": "^20.17.23",
+    "@types/underscore": "^1.13.0",
+    "bun-plugin-tailwind": "^0.0.15",
+    "chokidar": "^3.6.0",
+    "html-minifier-terser": "^7.2.0",
+    "htmltidy2": "^1.2.0",
+    "mime-types": "^2.1.35",
+    "prettier": "^3.5.3",
+    "react-dom": "^19.0.0",
+    "rxjs": "^7.8.2",
+    "tailwindcss": "^4.0.12",
+    "underscore": "^1.13.7",
+    "yaml": "^2.7.0"
+  },
+  "devDependencies": {
+    "bun-html-live-reload": "^1.0.2"
+  }
+}

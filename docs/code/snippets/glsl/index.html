@@ -1,0 +1,54 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>GLSL snippets</title>
+    <link rel="stylesheet" href="/_styles/style.css" />
+    <meta name="description" content="" />
+    <meta property="og:title" content="GLSL snippets" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/code/snippets/glsl" />
+    <meta property="og:description" content="" />
+  </head>
+  <body>
+    <header>
+      <a href="/">Top</a> &gt; <a href="/code">Code</a> &gt;
+      <a href="/code/snippets">Snippets</a> &gt; GLSL snippets
+    </header>
+    <hr />
+    <h1 class="keep">GLSL snippets</h1>
+    <main>
+      <pre><code class="language-glsl">vec3 ll_to_xyz(vec2 ll) {
+  float lon = ll.x;
+  float lat = ll.y;
+  return vec3(cos(lon) * cos(lat), sin(lon) * cos(lat), sin(lat)  );
+}
+</code></pre>
+      <pre><code class="language-glsl">vec2 xyz_to_ll(vec3 v) {
+  float x = v.x, y = v.y, z = v.z;
+  return vec2(asin(z), atan(y, x));
+}
+</code></pre>
+      <h2>Rotate spherical coordinates</h2>
+      <pre><code class="language-glsl">vec2 rotll(vec2 l, float theta, float phi) {
+  float lat = l.y;
+  float lon = l.x;
+  return vec2(
+    atan(sin(lon), tan(lat) * sin(theta) + cos(lon) * cos(theta)) - phi,
+    asin(cos(theta) * sin(lat) - cos(lon) * sin(theta) * cos(lat))
+  );
+}
+</code></pre>
+    </main>
+    <nav><ol></ol></nav>
+    <hr />
+    <footer>
+      <p>
+        © 2025 Haunted Loaf.
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+          >CC BY-NC-SA 4.0 </a
+        >. <a href="/_map">Site Map</a>.
+      </p>
+    </footer>
+  </body>
+</html>

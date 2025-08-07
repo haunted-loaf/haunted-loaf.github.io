@@ -1,0 +1,74 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Align transforms</title>
+    <link rel="stylesheet" href="/_styles/style.css" />
+    <meta name="description" content="" />
+    <meta property="og:title" content="Align transforms" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="/code/snippets/gdscript/align_transforms"
+    />
+    <meta property="og:description" content="" />
+  </head>
+  <body>
+    <header>
+      <a href="/">Top</a> &gt; <a href="/code">Code</a> &gt;
+      <a href="/code/snippets">Snippets</a> &gt;
+      <a href="/code/snippets/gdscript">Gdscript</a> &gt; Align transforms
+    </header>
+    <hr />
+    <h1 class="keep">Align transforms</h1>
+    <main>
+      <h2>Teleport/portal between transforms</h2>
+      <p>
+        You have Node3D A, and two Transform3Ds B and C. You want to
+        &quot;teleport&quot; A from B to C, such that the relative orientation
+        and position of A to B becomes its relative orientation and position of
+        A to C.
+      </p>
+      <pre><code># Compute the transform from B to A.
+var t := B.global_transform.affine_inverse() * A.global_transform
+
+# Apply that transform to C, assigning the result to A.
+A.global_transform = C.global_transform * t
+</code></pre>
+      <h2>Align exactly</h2>
+      <p>
+        Suppose you have a Node3D A with a Node3D child B, and an unrelated
+        Node3D C.
+      </p>
+      <p>You want to transform A so that B&#39;s transform matches C&#39;s.</p>
+      <pre><code>A.global_transform = C.global_transform * B.transform.affine_inverse()
+</code></pre>
+      <h2>Align flipped</h2>
+      <p>
+        If you want to align B and C but with B &quot;pointing the other
+        way&quot; - e.g. B and C are attachment points on two models - rotate
+        B&#39;s transform around an axis perpendicular to the axis B and C are
+        meeting on.
+      </p>
+      <p>
+        e.g. If B and C attach on the Z axis, you could rotate B around the Y
+        axis.
+      </p>
+      <pre><code>A.global_transform = (
+  C.global_transform *
+  B.transform.rotated_local(Vector3.UP, PI).affine_inverse()
+)
+</code></pre>
+    </main>
+    <nav><ol></ol></nav>
+    <hr />
+    <footer>
+      <p>
+        © 2025 Haunted Loaf.
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+          >CC BY-NC-SA 4.0 </a
+        >. <a href="/_map">Site Map</a>.
+      </p>
+    </footer>
+  </body>
+</html>

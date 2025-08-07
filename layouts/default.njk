@@ -1,0 +1,66 @@
+{% macro link (entry, title) %}
+  <a href="{{ entry.link }}">
+    {%- if title -%}
+      {{ title }}
+    {%- elif entry.basename == "" -%}
+      Home
+    {%- else %}
+      {{ entry.title }}
+    {%- endif -%}
+  </a>
+{% endmacro %}
+{% macro trail (entry) %}
+  {% if entry.up %}
+    {{ trail(entry.up) }} &gt; {{ link(entry) }}
+  {% else %}
+    {{ link(entry) }}
+  {% endif %}
+{% endmacro %}
+{% macro children (root) %}
+  <ol>
+    {% for child in root.sorted_children %}
+      {% if not child.hidden %}
+        <li>{{ link(child) }}</li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+{% endmacro %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ entry.title }}</title>
+    <link rel="stylesheet" href="/_styles/style.css"/>
+    <meta name="description" content="{{ description }}">
+    <meta property="og:title" content="{{ entry.title }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ entry.link }}">
+    <meta property="og:description" content="{{ description }}">
+  </head>
+  <body>
+    <header>
+      {% if entry.up %}
+        {{ trail(entry.up) }} &gt;
+      {% endif %}
+      {{ entry.title }}
+    </header>
+    <hr />
+    <h1 class="keep">{{ entry.title }} </h1>
+    <main>
+      {{ content | safe }}
+    </main>
+    <nav>
+      {{ children(entry) }}
+    </nav>
+    <hr />
+    <footer>
+      <p>
+        © 2025 Haunted Loaf.
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          CC BY-NC-SA 4.0
+        </a>.
+        <a href="/_map">Site Map</a>.
+      </p>
+    </footer>
+  </body>
+</html>
